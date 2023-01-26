@@ -1,0 +1,10 @@
+/* 页脚footer */
+#footer {
+    background: linear-gradient(-45deg, #c78f7e, #b4768e, #5eb7d7, #ebc2c0);
+    background-size: 400% 400%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+#footer:before {
+    background-color: rgba(0, 0, 0, 0);
+}
