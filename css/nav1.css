@@ -78,4 +78,7 @@
     -moz-transition: none!important;
     -ms-transition: none!important;
     -o-transition: none!important;
+    backdrop-filter: blur(20px);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
