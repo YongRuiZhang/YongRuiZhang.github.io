@@ -26,9 +26,10 @@
   translate:-50%;
 }
 
+
 .site-page::before{
     opacity: 0;
-    background-color: var(--zyr-theme)!important;
+    background-color: transparent!important;
     border-radius: 8px;
     border-color: var(--zyr-theme);
     -webkit-border-radius: 8px;
@@ -43,26 +44,26 @@
     position: absolute;
     top: 0!important;
     right: 0!important;
-    width:100%;
-    height:100%;
+    width:90%;
+    height:90%;
     /* content: "\f015"; */
     box-shadow: 0 0 5px var(--zyr-theme);
     font-family: "Font Awesome 6 Free";
     text-align: center;
     color:white;
-    line-height:20px;/*如果有溢出或者垂直不居中的现象微调一下这个参数*/
+    line-height:18px;/*如果有溢出或者垂直不居中的现象微调一下这个参数*/
     font-size: 16px;/*根据个人喜好*/
 }
 .site-page:hover::before{
     opacity: 1;
     scale:1.03;
 }
-.site-page{
+.site-page {
     position: relative;
     font-size: 16px; /*一定要把字体调大点，否则效果惨不忍睹！*/
 }
 :root{
-    --zyr-theme:#0099FF /*我的主题色*/
+    --zyr-theme: #0099FF /*我的主题色*/
 }
 
 .nav-fixed #nav{
