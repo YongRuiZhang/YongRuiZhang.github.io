@@ -1,0 +1,460 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>搭建Hadoop环境 | 秋白's Blog</title><meta name="author" content="秋白"><meta name="copyright" content="秋白"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这里只有在单机上搭建即处Hadoop环境，为了后续的搭建伪分布式集群打基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建Hadoop环境">
+<meta property="og:url" content="http://yongruizhang.github.io/posts/1141628095.html">
+<meta property="og:site_name" content="秋白&#39;s Blog">
+<meta property="og:description" content="这里只有在单机上搭建即处Hadoop环境，为了后续的搭建伪分布式集群打基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img8.jpg">
+<meta property="article:published_time" content="2023-01-28T15:35:27.000Z">
+<meta property="article:modified_time" content="2023-01-28T15:48:02.206Z">
+<meta property="article:author" content="秋白">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img8.jpg"><link rel="shortcut icon" href="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/favicon.png"><link rel="canonical" href="http://yongruizhang.github.io/posts/1141628095.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":false,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '搭建Hadoop环境',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-01-28 23:48:02'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = url => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      link.onload = () => resolve()
+      link.onerror = () => reject()
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script><link rel="stylesheet" href="/css/twikoo1.css"><link rel="stylesheet" href="/css/footer1.css"><link rel="apple-touch-icon" href="/img/favicon.jpeg"><meta name="apple-mobile-web-app-title" content="秋白's Blog"><link rel="bookmark" href="/img/favicon.jpeg"><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/favicon.jpeg" ><link rel="stylesheet" href="/css/footer_bg.css"><link rel="stylesheet" href="/css/nav1.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/favicon.png" onerror="onerror=null;src='https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw far fa-book-open"></i><span> 找文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img8.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="秋白's Blog"><img class="site-icon" src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/favicon.png"/><span class="site-name">秋白's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw far fa-book-open"></i><span> 找文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fa-solid fa-envelope-open-text"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div><div id="nav-right"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">搭建Hadoop环境</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-28T15:35:27.000Z" title="发表于 2023-01-28 23:35:27">2023-01-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-28T15:48:02.206Z" title="更新于 2023-01-28 23:48:02">2023-01-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Hadoop/">Hadoop</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="搭建Hadoop环境"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post" style="background: white; backdrop-filter: blur(5px); opacity: 0.98"><article class="post-content" id="article-container"><h1 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h1><blockquote>
+<p>这里对集群有一点说明，但为了文章不过长此文章不讲解搭建集群，请看本博客的另一篇文章（有一台虚拟机的Hadoop安装好后）</p>
+</blockquote>
+<p>Mac系统可以参考我的另一篇文章：<a href="694347442">UTM安装Ubuntu</a>（我自己用的是22.04.1 LTS 服务器版（非桌面版））。</p>
+<p>Windows系统就自行找文章（找之前先稍微浏览一下下面的内容），Windows系统不用UTM，一般使用VMware。只要把VMware下载好了，然后创建好了基本的Ubuntu虚拟机，差不多就可以看我的另一篇文章了，因为Ubuntu内部是一样的。</p>
+<p>由于涉及分发脚本等，最好配置成静态IP（不配置也可以，只是以后使用时会稍微麻烦点）</p>
+<blockquote>
+<p>可以选择先创建好一台虚拟机，然后克隆（适合手动配置静态IP的人，如果是在安装时就配置了静态IP可能就会出现问题）。这样是最快的。</p>
+<p>如果选择安装时配置静态IP就可以同时安装三台机器，因为中途有较长的等待时间。</p>
+</blockquote>
+<p>最好如下规划进行配置。</p>
+<h2 id="Hadoop配置规划"><a href="#Hadoop配置规划" class="headerlink" title="Hadoop配置规划"></a>Hadoop配置规划</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>1号服务器</th>
+<th>2号服务器</th>
+<th>3号服务器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP</td>
+<td>192.168.xx.103</td>
+<td>192.168.xx.104</td>
+<td>192.168.xx.105</td>
+</tr>
+<tr>
+<td>HDFS</td>
+<td>NameNode、DataNode</td>
+<td>DataNode</td>
+<td>SecondaryNameNode、DataNode</td>
+</tr>
+<tr>
+<td>YARN</td>
+<td>NodeManager</td>
+<td>ResourceManager、NodeManager</td>
+<td>NodeManager</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="安装好一台虚拟机后简单测试"><a href="#安装好一台虚拟机后简单测试" class="headerlink" title="安装好一台虚拟机后简单测试"></a>安装好一台虚拟机后简单测试</h2><p>避免后续白忙活，这里记得要先检查一下：</p>
+<p>最重要的就是IP了，检查是否是静态IP：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig <span class="comment"># 如果找不到命令，先下载网络工具包：sudo apt install net-tools</span></span><br></pre></td></tr></table></figure>
+<p>如果有IP并且和配置的一样这一步就OK了。没有配置静态IP就查看是否有IP就行。</p>
+<p>是否能上网：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
+<p>主机（Windows/Mac）是否能ping通虚拟机：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping 上上步看到的IP</span><br></pre></td></tr></table></figure>
+<p>如果无法ping通，但是上上步看到的IP正确，可能就是虚拟机防火墙没关：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭防火墙</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
+<p>虚拟机能否ping通主机：</p>
+<p>首先先查看主机IP：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ifconfig <span class="comment"># Mac</span></span><br><span class="line"></span><br><span class="line">ipcongig <span class="comment"># Windows</span></span><br></pre></td></tr></table></figure>
+<p>然后虚拟机再ping得到的IP。如果ping不通，但是能ping通百度，可能是主机防火墙影响。从安装性考虑：Mac可以关，Windows最好不要先关闭防火墙，在需要的时候才关。</p>
+<p>这样就基本可以了。</p>
+<p>最好只啊更新一下apt：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<p>有的时候apt和apt-get可能hi产生包依赖问题，这里推荐使用aptitude来安装软件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install aptitude</span><br></pre></td></tr></table></figure>
+<p>aptitude命令格式和apt基本一样，如果apt下载包依赖失败，可以利用aptitude。</p>
+<blockquote>
+<p>一切都安装好后，本质上可以删除iso镜像文件了，但是后面可能会出问题，可能需要重装，最好留手准备。</p>
+</blockquote>
+<h1 id="下载安装Hadoop"><a href="#下载安装Hadoop" class="headerlink" title="下载安装Hadoop"></a>下载安装Hadoop</h1><h2 id="查看版本依赖关系"><a href="#查看版本依赖关系" class="headerlink" title="查看版本依赖关系"></a>查看版本依赖关系</h2><p>直接只在下面网站中找即可找打HBase与hadoop的版本关系：</p>
+<p><a target="_blank" rel="noopener" href="https://hbase.apache.org/book.html#architecture">https://hbase.apache.org/book.html#architecture</a></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/hadopp-hbase_version.png" alt="版本对应关系"></p>
+<p>查看依赖关系：由于计划HBase安装2.4.11版本的，所以对应关系为：3.3.1比较好。当人也可以查查HBase与ZooKeeper（可直接使用HBase自带的）、Hive的版本依赖关系。</p>
+<h2 id="下载Hadoop"><a href="#下载Hadoop" class="headerlink" title="下载Hadoop"></a>下载Hadoop</h2><p>我只啊Mac电脑上访问网址：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.3.1/">https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.3.1/</a></p>
+<p>如果用的是桌面版的Ubuntu，可以直接在Linux中的FireFox中访问下载（如果网速快的话，或者嫌不同系统移动文件麻烦）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/hadoop.png" alt="截屏2023-01-28 17.54.11"></p>
+<p>选择 hadoop-3.3.1-aarch64.tar.gz</p>
+<p>点击即可下载。</p>
+<h2 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装Hadoop</h2><p><strong>之后如果没有特殊说明都是在Hadoop103上面操作</strong></p>
+<p>之后把下载好的压缩包放在<code>/usr/local</code>目录下：</p>
+<blockquote>
+<p>如果是非桌面版（在主机的浏览器上下载的Hadoop压缩包）：</p>
+<ul>
+<li>我利用UTM安装虚拟机的时候配置了共享文件夹，所以我可以直接把文件拖入虚拟机中完成移动。</li>
+<li>如果是没有配置的Mac用户，推荐下载FileZilla，使用FileZilla完成移动。</li>
+<li>如果是Windows用户，可以下载Xftp完成移动。</li>
+</ul>
+<p>==注意：==</p>
+<p>要先修改Hadoop目录的权限，否则会移动失败：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> -R 777 /usr/local <span class="comment"># 千万不要改/usr的权限，因为/usr/bin/sudo在/usr下，如果将/usr的权限改为777，则无法使用sudo命令</span></span><br></pre></td></tr></table></figure>
+<p>但是这个命令很坑，有另一种解决办法：</p>
+<p>在/usr/local下创建目录：hadoop</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> hadoop</span><br></pre></td></tr></table></figure>
+<p>然后更改拥有者为本用户：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chown</span> hadoop103 hadoop</span><br></pre></td></tr></table></figure>
+<p>之后将文件移动到hadoop目录下。</p>
+<p>然后再移动出去：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mv</span> hadoop/hadoop-3.3.1-aarch64.tar ./</span><br></pre></td></tr></table></figure>
+<p>删除原本的hadoop目录：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">rmdir</span> hadoop</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="解压压缩包"><a href="#解压压缩包" class="headerlink" title="解压压缩包"></a>解压压缩包</h2><p>如果是桌面版，直接右键解压即可。</p>
+<p>非桌面版，终端输入（cd到<code>/usr/local</code>目录下）：</p>
+<p>我下载下来之后的安装包变成了.tar后缀的压缩包，我执行命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -xvf hadoop-3.3.1-aarch64.tar</span><br></pre></td></tr></table></figure>
+<p>如果还是.tar.gz后缀，则：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxf hadoop-3.3.1-aarch64.tar.gz</span><br></pre></td></tr></table></figure>
+<p>当前目录下就多了一个hadoop-3.3.1的目录了，未来方便未来操作，修改目录名为hadoop：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mv</span> ./hadoop-3.3.1 hadoop</span><br></pre></td></tr></table></figure>
+<p>如图： </p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/tar_hadoop.png" alt="截屏2023-01-28 18.25.04"></p>
+<p>将拥有着更改为hadoop103用户：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chown</span> hadoop103 hadoop</span><br></pre></td></tr></table></figure>
+<h2 id="安装配置jdk"><a href="#安装配置jdk" class="headerlink" title="安装配置jdk"></a>安装配置jdk</h2><p>查看hadoop版本的时候，报错：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/error_no_jdk.png" alt="截屏2023-01-28 18.31.14"></p>
+<p>Hadoop运行是需要jdk的，直接用ubuntu自带的jdk就行了（因为MapReduce其实是在主机的IDEA上编写Java代码的，这里好像只需要一个运行的Java编译环境，所以这里的jdk版本也不重要）</p>
+<p>下载自带的jdk：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install default-jdk</span><br></pre></td></tr></table></figure>
+<p>这里比较久，三台同时弄吧～</p>
+<p>安装好jdk后，配置环境变量：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>进入编辑后，自己按 i 输入：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/default-java</span><br></pre></td></tr></table></figure>
+<p>如图：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/hadoop_jdk1.png" alt="配置环境变量"></p>
+<p>然后生效：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>这样其实就好了，可以检查一下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$JAVA_HOME</span></span><br><span class="line"></span><br><span class="line">java -version</span><br><span class="line"></span><br><span class="line"><span class="variable">$JAVA_HOME</span>/bin/java -version</span><br></pre></td></tr></table></figure>
+<p>效果应该如图：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/hadoop_jdk2.png" alt="检查jdk安装是否成功"></p>
+<p>现在可以再检查hadoop的版本了（顺便也是再检查jdk是否安装成功）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/hadoop</span><br><span class="line"></span><br><span class="line">./bin/hadoop version</span><br></pre></td></tr></table></figure>
+<p>效果应该如图：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/hadoop_version1.png" alt="查看Hadoop版本"></p>
+<p>到这里一个基本的Hadoop已经配置好了。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://yongruizhang.github.io">YongRui Zhang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yongruizhang.github.io/posts/1141628095.html">http://yongruizhang.github.io/posts/1141628095.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yongruizhang.github.io" target="_blank">秋白's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Hadoop/">Hadoop</a><a class="post-meta__tags" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></div><div class="post_share"><div class="social-share" data-image="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img8.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/weixin.jpeg" target="_blank"><img class="post-qr-code-img" src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/weixin.jpeg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/alipay.jpeg" target="_blank"><img class="post-qr-code-img" src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/alipay.jpeg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/4192183953.html" title="终端连接Ubuntu"><img class="cover" src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img7.jpg" onerror="onerror=null;src='https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">终端连接Ubuntu</div></div></a></div><div class="next-post pull-right"><a href="/posts/1259097482.html" title="sudo和su都不能使用的问题"><img class="cover" src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img5.jpg" onerror="onerror=null;src='https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">sudo和su都不能使用的问题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/694347442.html" title="UTM安装配置Ubuntu"><img class="cover" src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/UTM_Ubuntu.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-25</div><div class="title">UTM安装配置Ubuntu</div></div></a></div><div><a href="/posts/1259097482.html" title="sudo和su都不能使用的问题"><img class="cover" src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-28</div><div class="title">sudo和su都不能使用的问题</div></div></a></div><div><a href="/posts/820223701.html" title="修改Ubuntu用户名、密码和主机名"><img class="cover" src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-28</div><div class="title">修改Ubuntu用户名、密码和主机名</div></div></a></div><div><a href="/posts/4192183953.html" title="终端连接Ubuntu"><img class="cover" src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img7.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-28</div><div class="title">终端连接Ubuntu</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/favicon.png" onerror="this.onerror=null;this.src='https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">秋白</div><div class="author-info__description">埋头学习 抬头恋爱</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/yongruizhang"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/yongruizhang" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:yongruizhang@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/367319940?spm_id_from=333.337.0.0" target="_blank" title="bilibili"><i class="fa-brands fa-bilibili"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">我是2021级数据科学与大数据专业本科学生。<br/>目前主要方向是Java后端，浅浅学学前端，Hadoop大数据开发，数学建模，机器学习，算法。<br/>由于我是利用电脑端Safari浏览器写的相关样式，所以不同平台的效果可能不同，不推荐使用手机访问博客（我没怎么适配，可能会有些显示问题）</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">新建虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hadoop%E9%85%8D%E7%BD%AE%E8%A7%84%E5%88%92"><span class="toc-number">1.1.</span> <span class="toc-text">Hadoop配置规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%A5%BD%E4%B8%80%E5%8F%B0%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%90%8E%E7%AE%80%E5%8D%95%E6%B5%8B%E8%AF%95"><span class="toc-number">1.2.</span> <span class="toc-text">安装好一台虚拟机后简单测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85Hadoop"><span class="toc-number">2.</span> <span class="toc-text">下载安装Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.</span> <span class="toc-text">查看版本依赖关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDHadoop"><span class="toc-number">2.2.</span> <span class="toc-text">下载Hadoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Hadoop"><span class="toc-number">2.3.</span> <span class="toc-text">安装Hadoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%8E%8B%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="toc-number">2.4.</span> <span class="toc-text">解压压缩包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEjdk"><span class="toc-number">2.5.</span> <span class="toc-text">安装配置jdk</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/4192183953.html" title="终端连接Ubuntu"><img src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img7.jpg" onerror="this.onerror=null;this.src='https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/404.jpg'" alt="终端连接Ubuntu"/></a><div class="content"><a class="title" href="/posts/4192183953.html" title="终端连接Ubuntu">终端连接Ubuntu</a><time datetime="2023-01-28T15:40:11.000Z" title="发表于 2023-01-28 23:40:11">2023-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1141628095.html" title="搭建Hadoop环境"><img src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img8.jpg" onerror="this.onerror=null;this.src='https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/404.jpg'" alt="搭建Hadoop环境"/></a><div class="content"><a class="title" href="/posts/1141628095.html" title="搭建Hadoop环境">搭建Hadoop环境</a><time datetime="2023-01-28T15:35:27.000Z" title="发表于 2023-01-28 23:35:27">2023-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1259097482.html" title="sudo和su都不能使用的问题"><img src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img5.jpg" onerror="this.onerror=null;this.src='https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/404.jpg'" alt="sudo和su都不能使用的问题"/></a><div class="content"><a class="title" href="/posts/1259097482.html" title="sudo和su都不能使用的问题">sudo和su都不能使用的问题</a><time datetime="2023-01-28T12:52:12.000Z" title="发表于 2023-01-28 20:52:12">2023-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/820223701.html" title="修改Ubuntu用户名、密码和主机名"><img src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img8.jpg" onerror="this.onerror=null;this.src='https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/404.jpg'" alt="修改Ubuntu用户名、密码和主机名"/></a><div class="content"><a class="title" href="/posts/820223701.html" title="修改Ubuntu用户名、密码和主机名">修改Ubuntu用户名、密码和主机名</a><time datetime="2023-01-28T08:50:52.000Z" title="发表于 2023-01-28 16:50:52">2023-01-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/88294277.html" title="线性规划"><img src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/img9.jpg" onerror="this.onerror=null;this.src='https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/404.jpg'" alt="线性规划"/></a><div class="content"><a class="title" href="/posts/88294277.html" title="线性规划">线性规划</a><time datetime="2023-01-25T13:44:11.000Z" title="发表于 2023-01-25 21:44:11">2023-01-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By 秋白</div><div class="footer_custom_text">埋头学习 抬头恋爱<br/>本博客为个人博客，内容仅供学习参考<br/>如果文章帮到您了，或者您觉得我比较有趣摆脱给我评论或打赏～</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://blog-comments-phi-eight.vercel.app',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://blog-comments-phi-eight.vercel.app',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script async src="https://cdn.jsdelivr.net/gh/zhheo/twikoo@dev/dist/twikoo.all.min.js"><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "52b81d8c-40b2-40bc-bd82-3bceb709cf4b";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (true) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
