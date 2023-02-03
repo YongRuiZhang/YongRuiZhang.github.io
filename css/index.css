@@ -5011,13 +5011,13 @@ h1.page-title + .tag-cloud-list {
   padding: 6px 0 16px;
 }
 .katex-wrap {
-  overflow: auto;
+  overflow: hidden;
 }
 .katex-wrap::-webkit-scrollbar {
   display: none;
 }
 .mathjax-overflow {
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
 }
 span.mathjax-overflow {
