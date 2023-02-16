@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title>132模式</title>
+      <link href="/posts/71180092.html"/>
+      <url>/posts/71180092.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><a href="https://leetcode.cn/problems/132-pattern/description/">力扣原题链接</a></p><p>给你一个整数数组 <code>nums</code> ，数组中共有 <code>n</code> 个整数。<strong>132 模式的子序列</strong> 由三个整数 <code>nums[i]</code>、<code>nums[j]</code> 和 <code>nums[k]</code> 组成，并同时满足：<code>i &lt; j &lt; k</code> 和 <code>nums[i] &lt; nums[k] &lt; nums[j]</code> 。</p><p>如果 <code>nums</code> 中存在 <strong>132 模式的子序列</strong> ，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p><p><strong>示例 1：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [1,2,3,4]</span><br><span class="line">输出：false</span><br><span class="line">解释：序列中不存在 132 模式的子序列。</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [3,1,4,2]</span><br><span class="line">输出：true</span><br><span class="line">解释：序列中有 1 个 132 模式的子序列： [1, 4, 2] 。</span><br></pre></td></tr></table></figure><p><strong>示例 3：</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [-1,3,2,0]</span><br><span class="line">输出：true</span><br><span class="line">解释：序列中有 3 个 132 模式的的子序列：[-1, 3, 2]、[-1, 3, 0] 和 [-1, 2, 0] 。</span><br></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>n == nums.length</code></li><li><code>1 &lt;= n &lt;= 2 * 10^5</code></li><li><code>-10^9 &lt;= nums[i] &lt;= 10^9</code></li></ul><p>进阶：请使用时间复杂度为$O(n)$的方法。</p><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>朴素的做法是分别对三个数进行枚举，这样的做法是 $O(n^3)$的，数据范围是$10^4$ ，稳稳超时。</p><p>事实上，这样的数据范围甚至不足以我们枚举其中两个数，然后优化找第三个数的$O(n^2)$做法。</p><p>这时候根据数据范围会联想到树状数组，使用树状数组的复杂度是$O(nlog_2n)$的，可以过。但是代码量会较多一点，还需要理解离散化等前置知识。</p><p>因此，我们可以从 132 的大小特性去分析，如果在确定一个数之后，如何快速找到另外两个数（我们使用 <code>ijk</code> 来代指 132 结构）：</p><ul><li><p>枚举 <code>i</code>：由于 <code>i</code> 是 132 结构中最小的数，那么相当于我们要从 <code>i</code> 后面，找到一个对数 <code>(j,k)</code>，使得 <code>(j,k)</code> 都满足比 <code>i</code> 大，同时 <code>j</code> 和 <code>k</code> 之间存在 <code>j &gt; k</code> 的关系。由于我们的遍历是单向的，因此我们可以将问题转化为找 <code>k</code>，首先 <code>k</code> 需要比 <code>i</code> 大，同时在 <code>[i, k]</code> 之间存在比 <code>k</code> 大的数即可。</p></li><li><p>枚举 <code>j</code>：由于 <code>j</code> 是 132 结构里最大的数，因此我们需要在 <code>j</code> 的右边中比 <code>j</code> 小的「最大」的数，在 j 的左边找比 j 小的「最小」的数。这很容易联想到单调栈，但是朴素的单调栈是帮助我们找到左边或者右边「最近」的数，无法直接满足我们「最大」和「最小」的要求，需要引入额外逻辑。</p></li><li><p>枚举 <code>k</code>：由于 <code>k</code> 是 132 结构中的中间值，这里的分析逻辑和「枚举 <code>i</code>」类似，因为遍历是单向的，我们需要找到 <code>k</code> 左边的 <code>i</code>，同时确保 <code>[i,k]</code> 之间存在比 <code>i</code> 和 <code>k</code> 大的数字。</p></li></ul><p>以上三种分析方法都是可行的，但「枚举 <code>i</code>」的做法是最简单的。</p><p>因为如果存在 <code>(j,k)</code> 满足要求的话，我们只需要找到一个最大的满足条件的 <code>k</code>，通过与 <code>i</code> 的比较即可。</p><p>举例：</p><p>对于样例数据 [3, 1, 4, 2]，我们知道满足 132 结构的子序列是 [1, 4, 2]，其处理逻辑是（遍历从后往前）：</p><ul><li>枚举到 2：栈内元素为 [2]，<code>k</code> = INF</li><li>枚举到 4：不满足「单调递减」，2 出栈更新 <code>k</code>，4 入栈。栈内元素为 [4]，<code>k</code> = 2</li><li>枚举到 1：满足 <code>nums[i] &lt; k</code>，说明对于 <code>i</code> 而言，后面有一个比其大的元素（满足 <code>i &lt; k</code> 的条件），同时这个 <code>k</code> 的来源又是因为维护「单调递减」而弹出导致被更新的（满足 <code>i</code> 和 <code>k</code> 之间，有比 <code>k</code> 要大的元素）。因此我们找到了满足 132 结构的组合。</li></ul><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><div class="tabs" id="solution"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#solution-1">C++</button></li><li class="tab"><button type="button" data-href="#solution-2">Java</button></li><li class="tab"><button type="button" data-href="#solution-3">Python3</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="solution-1"><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">find132pattern</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">        <span class="type">int</span> k = INT_MIN, sz = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = sz - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; k) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">while</span> (!st.<span class="built_in">empty</span>() &amp;&amp; nums[i] &gt; st.<span class="built_in">top</span>()) &#123;</span><br><span class="line">                k = st.<span class="built_in">top</span>(); st.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            st.<span class="built_in">push</span>(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="solution-2"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">find132pattern</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        Deque&lt;Integer&gt; d = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &lt; k) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">while</span> (!d.isEmpty() &amp;&amp; nums[i] &gt; d.peekLast()) &#123;</span><br><span class="line">                k = d.pollLast();</span><br><span class="line">            &#125;</span><br><span class="line">            d.addLast(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="solution-3"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">find132pattern</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        stack = []</span><br><span class="line">        k = -(<span class="number">10</span> ** <span class="number">9</span> + <span class="number">7</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nums)-<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> nums[i] &lt; k:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">while</span> stack <span class="keyword">and</span> nums[i] &lt; stack[-<span class="number">1</span>]:</span><br><span class="line">                k = stack.pop()</span><br><span class="line">            stack.append(nums[i])</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构和算法 </category>
+          
+          <category> 算法题 </category>
+          
+          <category> 栈和队列 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据结构和算法 </tag>
+            
+            <tag> C++ </tag>
+            
+            <tag> Java </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> 栈和队列 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>离散化区间和</title>
       <link href="/posts/3005926051.html"/>
       <url>/posts/3005926051.html</url>
@@ -15,9 +52,11 @@
           
           <category> 数据结构和算法 </category>
           
-          <category> 数组和字符串 </category>
+          <category> 算法题 </category>
           
-          <category> 前缀和 </category>
+          <category> 前缀和与差分 </category>
+          
+          <category> 数组和字符串 </category>
           
           <category> 二分查找 </category>
           
@@ -32,9 +71,9 @@
             
             <tag> 数组和字符串 </tag>
             
-            <tag> 二分查找 </tag>
+            <tag> 前缀和与差分 </tag>
             
-            <tag> 前缀和 </tag>
+            <tag> 二分查找 </tag>
             
         </tags>
       
@@ -53,6 +92,8 @@
       <categories>
           
           <category> 数据结构和算法 </category>
+          
+          <category> 算法题 </category>
           
           <category> 数组和字符串 </category>
           
@@ -89,6 +130,8 @@
           
           <category> 数据结构和算法 </category>
           
+          <category> 算法题 </category>
+          
           <category> 数组和字符串 </category>
           
       </categories>
@@ -119,6 +162,8 @@
       <categories>
           
           <category> 数据结构和算法 </category>
+          
+          <category> 基本原理 </category>
           
           <category> 数组和字符串 </category>
           
@@ -182,7 +227,9 @@
           
           <category> 数据结构和算法 </category>
           
-          <category> 前缀和 </category>
+          <category> 算法题 </category>
+          
+          <category> 前缀和与差分 </category>
           
       </categories>
       
@@ -193,7 +240,7 @@
             
             <tag> C++ </tag>
             
-            <tag> 前缀和 </tag>
+            <tag> 前缀和与差分 </tag>
             
         </tags>
       
@@ -364,6 +411,8 @@
           
           <category> 数据结构和算法 </category>
           
+          <category> 基本原理 </category>
+          
           <category> 图论 </category>
           
       </categories>
@@ -394,6 +443,8 @@
       <categories>
           
           <category> 数据结构和算法 </category>
+          
+          <category> 基本原理 </category>
           
           <category> 图论 </category>
           
@@ -430,6 +481,8 @@
           
           <category> 数据结构和算法 </category>
           
+          <category> 基本原理 </category>
+          
           <category> 图论 </category>
           
           <category> bfs </category>
@@ -464,6 +517,8 @@
       <categories>
           
           <category> 数据结构和算法 </category>
+          
+          <category> 基本原理 </category>
           
           <category> 图论 </category>
           
@@ -500,6 +555,8 @@
           
           <category> 数据结构和算法 </category>
           
+          <category> 基本原理 </category>
+          
           <category> 图论 </category>
           
       </categories>
@@ -531,6 +588,8 @@
           
           <category> 数据结构和算法 </category>
           
+          <category> 基本原理 </category>
+          
           <category> 图论 </category>
           
       </categories>
@@ -561,6 +620,8 @@
       <categories>
           
           <category> 数据结构和算法 </category>
+          
+          <category> 基本原理 </category>
           
           <category> 链表 </category>
           
@@ -1695,9 +1756,9 @@
             
             <tag> Mac </tag>
             
-            <tag> python </tag>
-            
             <tag> 环境 </tag>
+            
+            <tag> python </tag>
             
         </tags>
       
@@ -1896,7 +1957,7 @@
       <link href="/posts/1410315814.html"/>
       <url>/posts/1410315814.html</url>
       
-        <content type="html"><![CDATA[<h1 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h1><blockquote><p>引用</p></blockquote><pre><code>引用内容</code></pre><ul><li>无序列表 1</li><li>无序列表 2</li><li>无序列表 3</li></ul><ol><li>有序列表 1</li><li>有序列表 2</li><li>有序列表 3</li></ol><p>基本代码块：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello My Blog! 你好，我的博客&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h1><h2 id="长代码块"><a href="#长代码块" class="headerlink" title="长代码块"></a>长代码块</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure><h2 id="宽代码块"><a href="#宽代码块" class="headerlink" title="宽代码块"></a>宽代码块</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure><h2 id="复合代码块"><a href="#复合代码块" class="headerlink" title="复合代码块"></a>复合代码块</h2><p>以 Hello World 为例，不同语言的代码风格：</p><div class="tabs" id="helloworld"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#helloworld-1">c++</button></li><li class="tab"><button type="button" data-href="#helloworld-2">java</button></li><li class="tab"><button type="button" data-href="#helloworld-3">javascript</button></li><li class="tab"><button type="button" data-href="#helloworld-4">python</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="helloworld-1"><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World1!&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-2"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-3"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consle.<span class="title function_">log</span>(<span class="string">&quot;Hello World!&quot;</span>);</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-4"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello World!&quot;</span>)</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div><h1 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a>Echarts</h1>    <div id="echarts2233" style="width: 100%;height: 400px;margin: 0 auto"></div>    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>    <script type="text/javascript">            var myChart = echarts.init(document.getElementById('echarts2233'));            // 指定图表的配置项和数据var option = {    title: {        text: 'ECharts 标签示例'    },    tooltip: {},    legend: {        data:['销量']    },    xAxis: {        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]    },    yAxis: {},    series: [{        name: '销量',        type: 'bar',        data: [5, 20, 36, 10, 10, 20]    }]};            myChart.setOption(option);    </script>    ]]></content>
+        <content type="html"><![CDATA[<h1 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h1><blockquote><p>引用</p></blockquote><pre><code>引用内容</code></pre><ul><li>无序列表 1</li><li>无序列表 2</li><li>无序列表 3</li></ul><ol><li>有序列表 1</li><li>有序列表 2</li><li>有序列表 3</li></ol><p>基本代码块：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello My Blog! 你好，我的博客&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h1><h2 id="长代码块"><a href="#长代码块" class="headerlink" title="长代码块"></a>长代码块</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure><h2 id="宽代码块"><a href="#宽代码块" class="headerlink" title="宽代码块"></a>宽代码块</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure><h2 id="复合代码块"><a href="#复合代码块" class="headerlink" title="复合代码块"></a>复合代码块</h2><p>以 Hello World 为例，不同语言的代码风格：</p><div class="tabs" id="helloworld"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#helloworld-1">c++</button></li><li class="tab"><button type="button" data-href="#helloworld-2">java</button></li><li class="tab"><button type="button" data-href="#helloworld-3">javascript</button></li><li class="tab"><button type="button" data-href="#helloworld-4">python</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="helloworld-1"><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World1!&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-2"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-3"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consle.<span class="title function_">log</span>(<span class="string">&quot;Hello World!&quot;</span>);</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-4"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello World!&quot;</span>)</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div><h1 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a>Echarts</h1>    <div id="echarts1081" style="width: 100%;height: 400px;margin: 0 auto"></div>    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>    <script type="text/javascript">            var myChart = echarts.init(document.getElementById('echarts1081'));            // 指定图表的配置项和数据var option = {    title: {        text: 'ECharts 标签示例'    },    tooltip: {},    legend: {        data:['销量']    },    xAxis: {        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]    },    yAxis: {},    series: [{        name: '销量',        type: 'bar',        data: [5, 20, 36, 10, 10, 20]    }]};            myChart.setOption(option);    </script>    ]]></content>
       
       
       <categories>
