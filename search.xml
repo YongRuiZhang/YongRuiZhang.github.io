@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>R语言环境</title>
+      <link href="/posts/830372185.html"/>
+      <url>/posts/830372185.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="R语言环境安装"><a href="#R语言环境安装" class="headerlink" title="R语言环境安装"></a>R语言环境安装</h1><blockquote><p>必须先安装 R 语言的环境再安装RStudio</p></blockquote><p><a href="https://cran.r-project.org">安装链接</a></p><p>打开如图（选择<strong>macOS</strong>版）：</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-02-28%2018.47.42.png" style="zoom:50%;" /></p><p>接下来滑倒下面，选择 <strong>base</strong>：</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-02-28%2018.48.53.png" style="zoom:50%;" /></p><p>再任意选择一个版本即可：</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-02-28%2018.49.37.png" style="zoom:50%;" /></p><p>下载到本地之后安装过程和其他软件一样。根据提示下一步和同意即可。</p><h1 id="安装RStudio"><a href="#安装RStudio" class="headerlink" title="安装RStudio"></a>安装RStudio</h1><p><a href="https://posit.co/download/rstudio-desktop/#download">安装链接</a></p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-02-28%2018.53.47.png" style="zoom:50%;" /></p><p>点击第二个点按钮（DOWNLOAD RESTUDIO DESKTOP FOR MAC）。</p><p>或者滑到网页下面再选择对应版本的下载：</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-02-28%2018.55.55.png" style="zoom:50%;" /></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> R语言 </category>
+          
+          <category> 编程环境 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mac </tag>
+            
+            <tag> 环境 </tag>
+            
+            <tag> R语言 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>集群时间同步</title>
       <link href="/posts/4115971639.html"/>
       <url>/posts/4115971639.html</url>
@@ -15,9 +46,9 @@
           
           <category> 操作系统 </category>
           
-          <category> Linux </category>
-          
           <category> 大数据开发 </category>
+          
+          <category> Linux </category>
           
           <category> Hadoop </category>
           
@@ -65,9 +96,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 大数据 </tag>
             
@@ -1463,9 +1494,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 大数据 </tag>
             
@@ -1500,9 +1531,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 大数据 </tag>
             
@@ -1537,9 +1568,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 大数据 </tag>
             
@@ -1570,9 +1601,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 大数据 </tag>
             
@@ -1603,9 +1634,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 大数据 </tag>
             
@@ -1636,9 +1667,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 大数据 </tag>
             
@@ -1660,9 +1691,9 @@
           
           <category> 操作系统 </category>
           
-          <category> Linux </category>
-          
           <category> 大数据开发 </category>
+          
+          <category> Linux </category>
           
           <category> Hadoop </category>
           
@@ -1677,9 +1708,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 大数据 </tag>
             
@@ -1745,9 +1776,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
             <tag> 大数据 </tag>
             
@@ -1867,9 +1898,9 @@
       
         <tags>
             
-            <tag> MySQL </tag>
-            
             <tag> Mac </tag>
+            
+            <tag> MySQL </tag>
             
             <tag> 环境 </tag>
             
@@ -1900,9 +1931,9 @@
             
             <tag> Mac </tag>
             
-            <tag> 环境 </tag>
-            
             <tag> python </tag>
+            
+            <tag> 环境 </tag>
             
         </tags>
       
@@ -1958,15 +1989,15 @@
       
         <tags>
             
-            <tag> Java后端 </tag>
-            
             <tag> Mac </tag>
+            
+            <tag> Java后端 </tag>
             
             <tag> 操作系统 </tag>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -1993,9 +2024,9 @@
       
         <tags>
             
-            <tag> Java后端 </tag>
-            
             <tag> Mac </tag>
+            
+            <tag> Java后端 </tag>
             
             <tag> git </tag>
             
@@ -2026,9 +2057,9 @@
       
         <tags>
             
-            <tag> Java后端 </tag>
-            
             <tag> Mac </tag>
+            
+            <tag> Java后端 </tag>
             
             <tag> Maven </tag>
             
@@ -2101,7 +2132,7 @@
       <link href="/posts/1410315814.html"/>
       <url>/posts/1410315814.html</url>
       
-        <content type="html"><![CDATA[<h1 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h1><blockquote><p>引用</p></blockquote><pre><code>引用内容</code></pre><ul><li>无序列表 1</li><li>无序列表 2</li><li>无序列表 3</li></ul><ol><li>有序列表 1</li><li>有序列表 2</li><li>有序列表 3</li></ol><p>基本代码块：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello My Blog! 你好，我的博客&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h1><h2 id="长代码块"><a href="#长代码块" class="headerlink" title="长代码块"></a>长代码块</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure><h2 id="宽代码块"><a href="#宽代码块" class="headerlink" title="宽代码块"></a>宽代码块</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure><h2 id="复合代码块"><a href="#复合代码块" class="headerlink" title="复合代码块"></a>复合代码块</h2><p>以 Hello World 为例，不同语言的代码风格：</p><div class="tabs" id="helloworld"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#helloworld-1">c++</button></li><li class="tab"><button type="button" data-href="#helloworld-2">java</button></li><li class="tab"><button type="button" data-href="#helloworld-3">javascript</button></li><li class="tab"><button type="button" data-href="#helloworld-4">python</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="helloworld-1"><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World1!&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-2"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-3"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consle.<span class="title function_">log</span>(<span class="string">&quot;Hello World!&quot;</span>);</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-4"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello World!&quot;</span>)</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div><h1 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a>Echarts</h1>    <div id="echarts688" style="width: 100%;height: 400px;margin: 0 auto"></div>    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>    <script type="text/javascript">            var myChart = echarts.init(document.getElementById('echarts688'));            // 指定图表的配置项和数据var option = {    title: {        text: 'ECharts 标签示例'    },    tooltip: {},    legend: {        data:['销量']    },    xAxis: {        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]    },    yAxis: {},    series: [{        name: '销量',        type: 'bar',        data: [5, 20, 36, 10, 10, 20]    }]};            myChart.setOption(option);    </script>    ]]></content>
+        <content type="html"><![CDATA[<h1 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h1><blockquote><p>引用</p></blockquote><pre><code>引用内容</code></pre><ul><li>无序列表 1</li><li>无序列表 2</li><li>无序列表 3</li></ul><ol><li>有序列表 1</li><li>有序列表 2</li><li>有序列表 3</li></ol><p>基本代码块：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello My Blog! 你好，我的博客&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h1><h2 id="长代码块"><a href="#长代码块" class="headerlink" title="长代码块"></a>长代码块</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure><h2 id="宽代码块"><a href="#宽代码块" class="headerlink" title="宽代码块"></a>宽代码块</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>; cout &lt;&lt; <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure><h2 id="复合代码块"><a href="#复合代码块" class="headerlink" title="复合代码块"></a>复合代码块</h2><p>以 Hello World 为例，不同语言的代码风格：</p><div class="tabs" id="helloworld"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#helloworld-1">c++</button></li><li class="tab"><button type="button" data-href="#helloworld-2">java</button></li><li class="tab"><button type="button" data-href="#helloworld-3">javascript</button></li><li class="tab"><button type="button" data-href="#helloworld-4">python</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="helloworld-1"><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello World1!&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-2"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String args[])</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-3"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">consle.<span class="title function_">log</span>(<span class="string">&quot;Hello World!&quot;</span>);</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="helloworld-4"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello World!&quot;</span>)</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div><h1 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a>Echarts</h1>    <div id="echarts7424" style="width: 100%;height: 400px;margin: 0 auto"></div>    <script src="https://cdn.jsdelivr.net/npm/echarts@4.9.0/dist/echarts.min.js"></script>    <script type="text/javascript">            var myChart = echarts.init(document.getElementById('echarts7424'));            // 指定图表的配置项和数据var option = {    title: {        text: 'ECharts 标签示例'    },    tooltip: {},    legend: {        data:['销量']    },    xAxis: {        data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]    },    yAxis: {},    series: [{        name: '销量',        type: 'bar',        data: [5, 20, 36, 10, 10, 20]    }]};            myChart.setOption(option);    </script>    ]]></content>
       
       
       <categories>
