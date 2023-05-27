@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>JetBrains（IDEA、PyCharm等）下载教程</title>
+      <link href="/posts/2421785022.html"/>
+      <url>/posts/2421785022.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>JetBrains是一家捷克的软件开发公司，该公司位于捷克的布拉格，并在俄罗斯的圣彼得堡及美国麻州波士顿都设有办公室，该公司最为人所熟知的产品是Java编程语言开发撰写时所用的集成开发环境：IntelliJ IDEA。</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://bkimg.cdn.bcebos.com/pic/b3fb43166d224f4a20a4541007a587529822720e7b2c?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyNzI=,g_7,xp_5,yp_5" style="zoom: 15%;" /></p><h2 id="产品"><a href="#产品" class="headerlink" title="产品"></a>产品</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.lizhi.io/wp-content/uploads/2020/03/lz-jetbrains_all_2240x840-1920x720.png" alt="产品介绍"></p><h3 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h3><ul><li>Fleet - 下一代JetBrains 的 IDE</li><li>AppCode - 适用于 iOS/macOS 开发的智能 IDE</li><li><strong>CLion - 支持 C 和 C++ 的跨平台 IDE</strong></li><li>DataGrip - 多种数据库，一个工具</li><li>GoLand - 专为 Go 开发者设计的跨平台 IDE</li><li>IntelliJ IDEA - 功能强大，符合人体工程学的 JVM IDE</li><li>PHPStorm - 高效智能的 PHP 集成开发工具</li><li><strong>PyCharm - 智能 Python 集成开发工具</strong></li><li>Rider - 快速且强大的跨平台 .NET IDE</li><li>RubyMine - 最智能的 Ruby 与 Rails IDE</li><li><strong>WebStorm - 最智能的 JavaScript IDE</strong></li></ul><h3 id="NET"><a href="#NET" class="headerlink" title=".NET"></a>.NET</h3><ul><li>ReSharper - 适用于.NET开发者的Visual Studio扩展</li><li>dotCover - .NET 单元测试工具</li><li>dotMemory - .NET 内存分析器</li><li>dotPeek - 免费 .NET 反编译器和浏览器</li><li>dotTrace - .NET 性能分析器</li></ul><h3 id="团队工具"><a href="#团队工具" class="headerlink" title="团队工具"></a>团队工具</h3><ul><li>Space - 集成的团队环境</li><li>TeamCity - 安装即用的强大持续集成工具</li><li>Upsource - 代码审查、项目分析</li><li>YouTrack - 为敏捷团队打造的项目管理工具</li><li>Datalore - 提供智能编码辅助的在线数据科学笔记本</li><li>Hub - YouTrack、TeamCity 和 Upsource 的连接器</li></ul><h1 id="下载教程"><a href="#下载教程" class="headerlink" title="下载教程"></a>下载教程</h1><p>这里以IDEA（<strong>其他的同理</strong>）作为演示：</p><h2 id="教育优惠下载"><a href="#教育优惠下载" class="headerlink" title="教育优惠下载"></a>教育优惠下载</h2><p>访问官网：<a href="https://www.jetbrains.com.cn">中国区官网链接</a></p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-05-27%2012.02.17.png" alt="截屏2023-05-27 12.02.17" style="zoom:50%;" /></p><p>首先点击右上角先注册或登录JetBrains账号,或者直接点击<a href="https://account.jetbrains.com/?_ga=2.186563561.1136049143.1685160084-1282213876.1685160084&amp;_gl=1*15llhbv*_ga*MTI4MjIxMzg3Ni4xNjg1MTYwMDg0*_ga_9J976DJZ68*MTY4NTE2MDA4My4xLjEuMTY4NTE2MDA5NS41NS4wLjA.">登录链接</a></p><blockquote><p>  关于注册：</p><p>  这里用什么邮箱注册都可以，用什么方式注册也都是可以的。</p></blockquote><p>注册登录成功后界面如下（我这里是已经有了这些产品的许可证，如果是未申请的人应该不是这样）：</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%9B%BE_2023-05-27_12-08-45.png" alt="截图_2023-05-27_12-08-45" style="zoom:50%;" /></p><p>等会儿申请成功后，就可以点击产品下面的链接直接下载了。</p><p>登录后再访问：<a href="https://www.jetbrains.com/zh-cn/community/education/#students">学生或教师认证链接</a></p><p>向下滑动页面，到如图位置，点击立即申请：</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-05-27%2011.55.03.png" alt="截屏2023-05-27 11.55.03" style="zoom:50%;" /></p><p>点击后跳转到如下界面，填写信息即可（<strong>这里的邮箱一定要是学校开户的邮箱（不同学校开户方式可能不同，请自行搜索如何开户）才行，不能是QQ邮箱、谷歌邮箱这种</strong>）：</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-05-27%2011.56.13.png" alt="截屏2023-05-27 11.56.13" style="zoom:50%;" /></p><p>申请成功登录账号，点击链接下载即可。例如点击IntelliJ IDEA Ultimate</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-05-27%2012.12.48.png" alt="截屏2023-05-27 12.12.48" style="zoom:50%;" /></p><p>再点击Download，跳转到如下界面：</p><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://fastly.jsdelivr.net/npm/yongruizhang-blogimg@latest/%E6%88%AA%E5%B1%8F2023-05-27%2012.13.30.png" alt="截屏2023-05-27 12.13.30" style="zoom:50%;" /></p><p>选择对应的版本下载即可。</p><p>下载好产品后，需要登录刚才申请的账号，这样才会把许可证加载到产品中长期使用。</p><blockquote><p>  这种方式每年都需要再去申请一次，再许可证到期前一周官方会发邮件提示到。</p></blockquote><h2 id="其他下载方式"><a href="#其他下载方式" class="headerlink" title="其他下载方式"></a>其他下载方式</h2><p>查看这个链接学习：<a href="https://www.bilibili.com/video/BV1YG411s7j4/?spm_id_from=333.337.search-card.all.click&amp;vd_source=32f93e4a4ba268a7391b3d329ced107d">https://www.bilibili.com/video/BV1YG411s7j4/?spm_id_from=333.337.search-card.all.click&amp;vd_source=32f93e4a4ba268a7391b3d329ced107d</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程工具下载 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Mac </tag>
+            
+            <tag> 编程工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>搭建Hadoop HA(高可用)集群</title>
       <link href="/posts/3297135020.html"/>
       <url>/posts/3297135020.html</url>
