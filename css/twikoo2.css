@@ -367,10 +367,13 @@
 }
 
 .el-input__inner, .el-textarea__inner {
-    height: 150px !important;
     background-image: none;
-    box-sizing: border-box;
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    -webkit-box-sizing: border-box;
+    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+}
+
+.el-textarea__inner {
+    height: 130px !important;
 }
 
 @media screen and (max-width: 769px){
