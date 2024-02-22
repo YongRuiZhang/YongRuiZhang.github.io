@@ -312,8 +312,8 @@
 
 .el-input__inner, .el-textarea__inner {
     background-image: none;
-    -webkit-box-sizing: border-box;
-    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    box-sizing: border-box;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
 }
 
 @media screen and (max-width: 769px){
