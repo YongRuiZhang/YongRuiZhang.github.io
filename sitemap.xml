@@ -2,18 +2,99 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yongruizhang.cn/posts/4223662913.html</loc>
+    <loc>http://yongruizhang.cn/posts/2768249503.html</loc>
     
-    <lastmod>2024-02-26</lastmod>
+    <lastmod>2024-02-27</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://yongruizhang.cn/posts/2768249503.html</loc>
+    <loc>http://yongruizhang.cn/posts/1925125395.html</loc>
     
-    <lastmod>2024-02-21</lastmod>
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/posts/1137707673.html</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/posts/449089913.html</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/posts/1667740714.html</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/posts/362397694.html</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/posts/4286605504.html</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/posts/2522177458.html</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/posts/350679531.html</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/posts/3265658309.html</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/posts/4223662913.html</loc>
+    
+    <lastmod>2024-02-26</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -902,15 +983,6 @@
   </url>
   
   <url>
-    <loc>http://yongruizhang.cn/posts/1925125395.html</loc>
-    
-    <lastmod>2023-03-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://yongruizhang.cn/posts/1452790229.html</loc>
     
     <lastmod>2023-03-01</lastmod>
@@ -1486,6 +1558,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>http://yongruizhang.cn/tags/%E6%8E%92%E5%BA%8F/</loc>
+    <lastmod>2024-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -1987,6 +2066,13 @@
   
   <url>
     <loc>http://yongruizhang.cn/categories/iPad/</loc>
+    <lastmod>2024-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yongruizhang.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/%E6%8E%92%E5%BA%8F/</loc>
     <lastmod>2024-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
