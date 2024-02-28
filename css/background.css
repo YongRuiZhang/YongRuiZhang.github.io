@@ -1,10 +1,10 @@
 #web_bg {
-    /* 背景图像的地址（url括号里）  */
-    background: url(https://zyr-blog-image.oss-cn-beijing.aliyuncs.com/img/blog-img-main/img1.jpg);
-    /* 背景图像不重复 */
-    background-repeat: no-repeat;
-    /* 背景图像大小 */
-    background-size: cover;
+  /* 背景图像的地址（url括号里）  */
+  background: url(https://yongruizhang-image.oss-cn-chengdu.aliyuncs.com/img/Downloads/img1.jpg);
+  /* 背景图像不重复 */
+  background-repeat: no-repeat;
+  /* 背景图像大小 */
+  background-size: cover;
 }
 
 /* #web_bg:after{
