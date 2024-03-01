@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yongruizhang.cn/posts/2768249503.html</loc>
+    
+    <lastmod>2024-03-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://yongruizhang.cn/posts/2697614349.html</loc>
     
     <lastmod>2024-03-01</lastmod>
@@ -239,15 +248,6 @@
     <loc>http://yongruizhang.cn/posts/2007534187.html</loc>
     
     <lastmod>2024-03-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://yongruizhang.cn/posts/2768249503.html</loc>
-    
-    <lastmod>2024-02-29</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
