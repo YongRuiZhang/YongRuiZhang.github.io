@@ -370,16 +370,11 @@
     background-image: none;
     -webkit-box-sizing: border-box;
     -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    -webkit-transition: box-shadow .2s 0 0 2px 1px rgba(0, 0, 0, 0.1);
 }
 
 .el-textarea__inner {
     min-height: 130px !important;
-}
-
-.el-textarea__inner:hover .el-textarea__inner:focus .el-textarea__inner:active {
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
 }
 
 @media screen and (max-width: 769px){
