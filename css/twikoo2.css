@@ -13,16 +13,6 @@
     flex-direction: column;
 }
 
-#twikoo .tk-submit.tk-row::before {
-    content: "";
-    position: absolute;
-    left:0;
-    top:0;
-    background: rgba(0,0,0,0.01);
-    filter: blur(2px);
-    z-index: 2;
-}
-
 .tk-meta-input {
     margin-bottom: 0.5rem;
     width: 70%
@@ -384,6 +374,10 @@
 
 .el-textarea__inner {
     min-height: 130px !important;
+}
+
+.el-textarea__inner:hover {
+    box-shadow: var(--card-hover-box-shadow);
 }
 
 @media screen and (max-width: 769px){
