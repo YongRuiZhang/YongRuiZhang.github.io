@@ -373,7 +373,7 @@
 }
 
 .el-textarea__inner {
-    height: 130px !important;
+    min-height: 130px !important;
 }
 
 @media screen and (max-width: 769px){
