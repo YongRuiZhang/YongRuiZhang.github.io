@@ -20,7 +20,7 @@
     position: absolute;
     left:0;
     top:0;
-    background: black;
+    background: rgba(0,0,0,0.1);
     filter: blur(2px);
     z-index: 2;
 }
