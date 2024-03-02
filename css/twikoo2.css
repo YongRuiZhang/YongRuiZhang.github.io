@@ -1,7 +1,7 @@
 /*twikoo样式修改*/
-/* #twikoo .tk-row .tk-avatar {
+#twikoo .tk-row .tk-avatar {
     display: none;
-} */
+}
 
 #twikoo .tk-row .tk-col {
     flex-direction: column-reverse !important;
@@ -13,12 +13,9 @@
     flex-direction: column;
 }
 
-#twiko .tk-submit.tk-row {
+#twiko .tk-submit.tk-row::before {
     content: "";
-    width:105%;
-    height:105%;
     position: absolute;
-    border-radius: 10px;
     left:0;
     top:0;
     background: rgba(0,0,0,0.01);
@@ -402,9 +399,9 @@
     padding-left: 8px;
 }
 
-.tk-submit-action-icon.__markdown {
+/* .tk-submit-action-icon.__markdown {
     display: none;
-}
+} */
 
 button.el-button.tk-cancel.el-button--default.el-button--small {
     background: var(--anzhiyu-secondbg) !important;
