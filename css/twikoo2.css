@@ -370,7 +370,6 @@
     background-image: none;
     -webkit-box-sizing: border-box;
     -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    -webkit-transition: box-shadow .2s 0 0 8px 4px rgba(0, 0, 0, 0.5);
 }
 
 .el-textarea__inner {
