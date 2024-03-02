@@ -377,7 +377,7 @@
 }
 
 .el-textarea__inner:hover {
-    box-shadow: var(--card-hover-box-shadow);
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);;
 }
 
 @media screen and (max-width: 769px){
