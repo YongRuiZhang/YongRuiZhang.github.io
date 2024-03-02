@@ -13,7 +13,7 @@
     flex-direction: column;
 }
 
-#twiko .tk-submit.tk-row::before {
+#twikoo .tk-submit.tk-row::before {
     content: "";
     position: absolute;
     left:0;
@@ -399,9 +399,9 @@
     padding-left: 8px;
 }
 
-/* .tk-submit-action-icon.__markdown {
+.tk-submit-action-icon.__markdown {
     display: none;
-} */
+}
 
 button.el-button.tk-cancel.el-button--default.el-button--small {
     background: var(--anzhiyu-secondbg) !important;
