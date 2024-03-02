@@ -376,8 +376,10 @@
     min-height: 130px !important;
 }
 
-.el-textarea__inner:hover {
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.5);;
+.el-textarea__inner:hover .el-textarea__inner:focus .el-textarea__inner:active {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
 }
 
 @media screen and (max-width: 769px){
