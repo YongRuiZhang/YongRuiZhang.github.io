@@ -13,6 +13,18 @@
     flex-direction: column;
 }
 
+.tk-col:after{
+    content: "";
+    width:100%;
+    height:100%;
+    position: absolute;
+    left:0;
+    top:0;
+    background: black;
+    filter: blur(2px);
+    z-index: 2;
+}
+
 .tk-meta-input {
     margin-bottom: 0.5rem;
     width: 70%
