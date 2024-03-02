@@ -1,7 +1,7 @@
 /*twikoo样式修改*/
-#twikoo .tk-row .tk-avatar {
+/* #twikoo .tk-row .tk-avatar {
     display: none;
-}
+} */
 
 #twikoo .tk-row .tk-col {
     flex-direction: column-reverse !important;
@@ -13,7 +13,7 @@
     flex-direction: column;
 }
 
-.tk-submit.tk-row {
+#twiko .tk-submit.tk-row {
     content: "";
     width:105%;
     height:105%;
